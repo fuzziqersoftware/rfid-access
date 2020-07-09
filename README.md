@@ -8,6 +8,7 @@ This project uses:
 - An HID iClass R40 RFID reader (you can buy these new or used on eBay; many office buildings use them)
 - A 3D-printed cover for a deadbolt knob, to lock and unlock the door
 - A custom PCB to power the servo and route the reader connections appropriately (but you don't need this - you can also use perfboard or wire manually)
+- A couple of resistors, a MOSFET, and an IR LED and IR phototransistor (see schematic)
 
 ## Hardware setup
 
@@ -15,7 +16,7 @@ Here's what my setup looks like:
 
 ![](hardware.jpeg)
 
-This is all on the inside of the door - from the outside, there's no indication at all that there's an RFID reader and computer attached to the door. The R40's read range is long enough that it can read cards through the door, even up to an inch or two away from the outside of the door. You just have to remember approximately where it is on the inside when you tap your card on the outside.
+This is all on the inside of the door - from the outside, there's no indication at all that there's an RFID reader and a tiny computer attached to the door. The R40's read range is long enough that it can read cards through the door, even up to an inch or two away from the outside of the door. You just have to remember approximately where it is on the inside when you tap your card on the outside.
 
 The hardware is all attached to a sheet of acrylic since I live in an apartment and don't want to screw things directly into the door. The acrylic is anchored under some metal door hardware, which also provides a convenient capacitive touch surface - just touch the chain deadbolt receptacle at the top to unlock the door from the inside. (You can hook this up to anything metal by soldering a wire to the EXIT-SENSE pad on the Arduino shield.)
 
@@ -25,7 +26,7 @@ The Arduino is attached to the acrylic with a couple of machine screws, and has 
 
 [Here is the EasyEDA project for the shield](https://easyeda.com/fuzziqersoftware/rfid-access-panel); the exported schematic and PCB files are also included in this repository. I ordered the PCBs through [JLCPCB](https://jlcpcb.com/) (you can do this directly from EasyEDA). The minimum order size is 5 boards, but I really only needed one, so I'll mail you a blank (unassembled) board for free if you tell me where to mail it to. (Offer expires if/when all four are mailed out.)
 
-This board has an IR LED and a phototransistor which the software uses to detect when the door is physically closed. (These should be soldered with plenty of extra wire, so they can be bent toward the doorjamb.) When the door is unlocked, it stays unlocked for at least three seconds and at most ten seconds - after three seconds, if the phototransistor detects the wall nearby at any point, the door will relock then instead of waiting the full ten seconds.
+This board has an IR LED and a phototransistor which the software uses to detect when the door is physically closed. (These should be soldered with plenty of extra wire, so they can be bent toward the doorjamb as you see in the photo above.) When the door is unlocked, it stays unlocked for at least three seconds and at most ten seconds - after three seconds, if the phototransistor detects the wall nearby at any point, the door will relock then instead of waiting the full ten seconds.
 
 The servo is securely fastened to the acrylic sheet, and the wires from the actuator wrap around the crown of the deadbolt knob cover.
 
