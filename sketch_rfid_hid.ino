@@ -241,7 +241,7 @@ int reader_hold_pin = 4; // blue from R40
 int reader_beeper_pin = 5; // yellow from R40
 int reader_green_led_pin = 6; // orange from R40
 int reader_red_led_pin = 7; // brown from R40
-int exit_sense_pin = A0; // exit switch capacitive sensor
+int exit_sense_pin = A0; // exit switch
 int ir_phototransistor_sense_pin = A4;
 
 Servo servo;
@@ -396,8 +396,7 @@ void loop() {
       last_open_sense_time = millis();
       is_open();
     }
-    int exit_sense = read_capacitive_pin(exit_sense_pin);
-    if (exit_sense > 4) {
+    if (digitalRead(exit_sense_pin) == HIGH) {
       unlock();
     }
   }
